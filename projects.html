@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portfolio Projects — Christine Lampong</title>
+<meta name="description" content="Operational systems, workflow designs, and backend infrastructure built by Christine Lampong — Executive VA & Operations Coordinator." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:       #1a1a1a;
+    --ink2:      #4a4a4a;
+    --ink3:      #888;
+    --rule:      #e8e4df;
+    --bg:        #faf9f7;
+    --bg2:       #f3f1ee;
+    --accent:    #2d5a3d;
+    --accent-lt: #edf3ef;
+    --serif:     'DM Serif Display', Georgia, serif;
+    --sans:      'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ─────────────────────────────────────────── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,249,247,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 6vw;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 62px;
+  }
+  .nav-logo {
+    font-family: var(--serif); font-size: 18px; color: var(--ink);
+    text-decoration: none; letter-spacing: -0.01em;
+  }
+  .nav-logo em { font-style: italic; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    font-size: 13px; font-weight: 400; color: var(--ink2);
+    text-decoration: none; letter-spacing: 0.02em;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a.active { color: var(--accent); font-weight: 500; }
+
+  /* ── HERO ────────────────────────────────────────── */
+  .hero {
+    padding: 80px 6vw 64px;
+    border-bottom: 1px solid var(--rule);
+    max-width: 860px;
+  }
+  .hero-eyebrow {
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-family: var(--serif); font-size: clamp(36px, 5vw, 54px);
+    line-height: 1.1; font-weight: 400; letter-spacing: -0.02em;
+    color: var(--ink); margin-bottom: 20px;
+  }
+  .hero h1 em { font-style: italic; }
+  .hero p {
+    font-size: 16px; color: var(--ink2); max-width: 580px;
+    line-height: 1.75; margin-bottom: 32px;
+  }
+  .hero-stats {
+    display: flex; gap: 40px; flex-wrap: wrap;
+  }
+  .stat-item { }
+  .stat-num {
+    font-family: var(--serif); font-size: 28px;
+    color: var(--ink); letter-spacing: -0.02em;
+  }
+  .stat-label { font-size: 12px; color: var(--ink3); margin-top: 2px; }
+
+  /* ── LAYOUT ──────────────────────────────────────── */
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 6vw; }
+
+  section { padding: 72px 6vw; border-bottom: 1px solid var(--rule); }
+
+  .section-eyebrow {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: var(--serif); font-size: clamp(26px, 3.5vw, 36px);
+    font-weight: 400; letter-spacing: -0.02em; line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  .section-title em { font-style: italic; }
+  .section-sub {
+    font-size: 15px; color: var(--ink2); max-width: 520px; line-height: 1.7;
+    margin-bottom: 48px;
+  }
+
+  /* ── PROJECT GRID ────────────────────────────────── */
+  .proj-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1px;
+    border: 1px solid var(--rule);
+    background: var(--rule);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .proj-card {
+    background: var(--bg);
+    padding: 32px 30px 28px;
+    cursor: pointer;
+    transition: background 0.18s;
+    position: relative;
+  }
+  .proj-card:hover { background: var(--bg2); }
+  .proj-card.open { background: var(--accent-lt); }
+  .proj-num {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+    color: var(--ink3); text-transform: uppercase; margin-bottom: 12px;
+  }
+  .proj-name {
+    font-family: var(--serif); font-size: 20px; font-weight: 400;
+    letter-spacing: -0.01em; margin-bottom: 6px; line-height: 1.25;
+  }
+  .proj-company { font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 10px; }
+  .proj-industry { font-size: 13px; color: var(--ink3); }
+  .proj-arrow {
+    position: absolute; top: 32px; right: 30px;
+    font-size: 18px; color: var(--ink3); transition: transform 0.2s, color 0.2s;
+  }
+  .proj-card.open .proj-arrow { transform: rotate(90deg); color: var(--accent); }
+
+  /* ── PROJECT DETAIL DRAWER ───────────────────────── */
+  .proj-detail {
+    display: none;
+    grid-column: 1 / -1;
+    background: #fff;
+    border-top: 1px solid var(--rule);
+    padding: 40px 36px;
+    animation: slideDown 0.22s ease;
+  }
+  .proj-detail.visible { display: block; }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 36px; }
+  @media (max-width: 700px) { .detail-grid { grid-template-columns: 1fr; gap: 24px; } }
+
+  .detail-label {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink3); font-weight: 500; margin-bottom: 10px;
+  }
+  .detail-block { margin-bottom: 28px; }
+  .detail-block p { font-size: 14px; color: var(--ink2); line-height: 1.7; }
+
+  .tool-list { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tool-pill {
+    font-size: 12px; padding: 4px 12px; border-radius: 20px;
+    border: 1px solid var(--rule); color: var(--ink2); background: var(--bg2);
+  }
+
+  .impact-list { list-style: none; }
+  .impact-list li {
+    font-size: 14px; color: var(--ink2); padding: 8px 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .impact-list li:last-child { border-bottom: none; }
+  .impact-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); flex-shrink: 0; margin-top: 7px;
+  }
+
+  .workflow-wrap {
+    background: var(--bg2); border-radius: 8px; padding: 18px 20px;
+    margin-top: 8px;
+  }
+  .workflow-flow {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 0;
+  }
+  .wf-step {
+    font-size: 12px; padding: 5px 11px; border-radius: 5px;
+    background: #fff; border: 1px solid var(--rule); color: var(--ink);
+    white-space: nowrap; margin: 3px 0; font-weight: 500;
+  }
+  .wf-arrow { font-size: 13px; color: var(--ink3); padding: 0 6px; }
+
+  .loom-tip {
+    background: var(--accent-lt); border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0; padding: 14px 18px; margin-top: 28px;
+  }
+  .loom-tip .lt-label {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 6px;
+  }
+  .loom-tip p { font-size: 13px; color: var(--ink2); line-height: 1.65; }
+
+  /* ── WORKFLOW SECTION ────────────────────────────── */
+  .wf-section { }
+  .wf-item { margin-bottom: 28px; }
+  .wf-title { font-size: 14px; font-weight: 500; margin-bottom: 10px; color: var(--ink); }
+
+  /* ── KPI SECTION ─────────────────────────────────── */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; }
+  .kpi-card { background: var(--bg); padding: 24px 22px; }
+  .kpi-label { font-size: 12px; color: var(--ink3); margin-bottom: 8px; }
+  .kpi-val { font-family: var(--serif); font-size: 26px; color: var(--ink); letter-spacing: -0.02em; }
+  .kpi-target { font-size: 12px; color: var(--accent); margin-top: 4px; }
+
+  /* ── SOP SECTION ─────────────────────────────────── */
+  .sop-list { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 680px) { .sop-list { grid-template-columns: 1fr; } }
+  .sop-card {
+    background: #fff; border: 1px solid var(--rule); border-radius: 10px;
+    padding: 22px 24px;
+  }
+  .sop-name { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+  .sop-owner { font-size: 12px; color: var(--ink3); margin-bottom: 14px; }
+  .sop-steps { list-style: none; counter-reset: step; }
+  .sop-steps li {
+    counter-increment: step; font-size: 13px; color: var(--ink2);
+    padding: 6px 0 6px 28px; border-bottom: 1px solid var(--rule);
+    position: relative; line-height: 1.55;
+  }
+  .sop-steps li:last-child { border-bottom: none; }
+  .sop-steps li::before {
+    content: counter(step);
+    position: absolute; left: 0; top: 8px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--accent-lt); color: var(--accent);
+    font-size: 10px; font-weight: 500;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ── AUTOMATION SECTION ──────────────────────────── */
+  .auto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 680px) { .auto-grid { grid-template-columns: 1fr; } }
+  .auto-card {
+    background: #fff; border: 1px solid var(--rule); border-radius: 10px;
+    padding: 20px 22px;
+  }
+  .auto-badge {
+    display: inline-block; font-size: 11px; font-weight: 500;
+    padding: 3px 9px; border-radius: 20px; margin-bottom: 10px;
+  }
+  .badge-zap { background: #fff4e0; color: #a06000; border: 1px solid #f5d88a; }
+  .badge-make { background: #e8f0fc; color: #1a4fa0; border: 1px solid #b3cafe; }
+  .badge-cu  { background: #f0eafe; color: #5b30b5; border: 1px solid #c9b8f5; }
+  .auto-title { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+  .auto-body { font-size: 13px; color: var(--ink2); line-height: 1.6; }
+  .auto-impact { font-size: 12px; color: var(--accent); margin-top: 8px; font-weight: 500; }
+
+  /* ── ROADMAP SECTION ─────────────────────────────── */
+  .roadmap { position: relative; }
+  .rm-phase { display: flex; gap: 28px; margin-bottom: 36px; align-items: flex-start; }
+  .rm-left { min-width: 110px; text-align: right; padding-top: 3px; }
+  .rm-phase-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+  .rm-phase-days { font-size: 12px; color: var(--ink3); margin-top: 3px; }
+  .rm-line { width: 1px; background: var(--rule); min-height: 40px; flex-shrink: 0; margin-top: 6px; }
+  .rm-body { flex: 1; }
+  .rm-title { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+  .rm-items { font-size: 13px; color: var(--ink2); line-height: 1.85; }
+
+  /* ── PRICING SECTION ─────────────────────────────── */
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; }
+  @media (max-width: 720px) { .pricing-grid { grid-template-columns: 1fr; } }
+  .pricing-card { background: var(--bg); padding: 30px 26px; }
+  .pricing-card.featured { background: var(--accent); }
+  .pricing-tier { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink3); margin-bottom: 10px; font-weight: 500; }
+  .pricing-card.featured .pricing-tier { color: rgba(255,255,255,0.65); }
+  .pricing-price { font-family: var(--serif); font-size: 30px; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 4px; }
+  .pricing-card.featured .pricing-price { color: #fff; }
+  .pricing-sub { font-size: 12px; color: var(--ink3); margin-bottom: 20px; }
+  .pricing-card.featured .pricing-sub { color: rgba(255,255,255,0.6); }
+  .pricing-feat { font-size: 13px; color: var(--ink2); padding: 8px 0; border-bottom: 1px solid var(--rule); line-height: 1.5; }
+  .pricing-card.featured .pricing-feat { color: rgba(255,255,255,0.85); border-bottom-color: rgba(255,255,255,0.15); }
+  .pricing-feat:last-child { border-bottom: none; }
+
+  /* ── RESUME SECTION ──────────────────────────────── */
+  .resume-bullets { list-style: none; }
+  .resume-bullets li {
+    padding: 14px 0 14px 20px; border-bottom: 1px solid var(--rule);
+    font-size: 14px; color: var(--ink2); line-height: 1.65; position: relative;
+  }
+  .resume-bullets li::before {
+    content: ''; position: absolute; left: 0; top: 23px;
+    width: 5px; height: 5px; border-radius: 50%; background: var(--accent);
+  }
+  .resume-bullets li:last-child { border-bottom: none; }
+  .resume-bullets strong { color: var(--ink); font-weight: 500; }
+
+  /* ── CTA STRIP ───────────────────────────────────── */
+  .cta-strip {
+    padding: 64px 6vw;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  .cta-text h2 {
+    font-family: var(--serif); font-size: clamp(24px, 3vw, 32px);
+    font-weight: 400; letter-spacing: -0.02em; margin-bottom: 8px;
+  }
+  .cta-text h2 em { font-style: italic; }
+  .cta-text p { font-size: 14px; color: var(--ink2); max-width: 420px; }
+  .cta-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; font-size: 13px; font-weight: 500;
+    padding: 11px 24px; border-radius: 6px; text-decoration: none;
+    transition: all 0.18s; letter-spacing: 0.01em;
+  }
+  .btn-primary { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
+  .btn-primary:hover { background: #1e3f2b; border-color: #1e3f2b; }
+  .btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--rule); }
+  .btn-outline:hover { border-color: var(--ink); }
+
+  /* ── FOOTER ──────────────────────────────────────── */
+  footer {
+    padding: 28px 6vw; border-top: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+    font-size: 13px; color: var(--ink3);
+  }
+  footer a { color: var(--ink3); text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+
+  /* ── RESPONSIVE ──────────────────────────────────── */
+  @media (max-width: 600px) {
+    nav { padding: 0 4vw; }
+    .nav-links { gap: 16px; }
+    section { padding: 52px 4vw; }
+    .hero { padding: 52px 4vw 48px; }
+    .proj-detail { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://christinelampong-portfolio.vercel.app/" class="nav-logo">Christine <em>Lampong</em></a>
+  <ul class="nav-links">
+    <li><a href="https://christinelampong-portfolio.vercel.app/#about">About</a></li>
+    <li><a href="https://christinelampong-portfolio.vercel.app/#experience">Experience</a></li>
+    <li><a href="https://christinelampong-portfolio.vercel.app/#skills">Skills</a></li>
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="https://christinelampong-portfolio.vercel.app/#contact">Work With Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Portfolio Projects</div>
+  <h1>Operations systems <em>built to scale.</em></h1>
+  <p>Six end-to-end demo projects showcasing the workflows, automations, SOPs, and dashboards I design for real-world business operations — from client onboarding to support infrastructure.</p>
+  <div class="hero-stats">
+    <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Full projects</div></div>
+    <div class="stat-item"><div class="stat-num">18+</div><div class="stat-label">Workflow maps</div></div>
+    <div class="stat-item"><div class="stat-num">24</div><div class="stat-label">SOPs documented</div></div>
+    <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Automation tools</div></div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-eyebrow">All Projects</div>
+  <h2 class="section-title">Where systems <em>meet results.</em></h2>
+  <p class="section-sub">Click any project to explore the full operational build — business profile, workflow maps, tools, and measurable impact.</p>
+
+  <div class="proj-grid" id="proj-grid">
+
+    <div class="proj-card" onclick="toggleProject(0, this)">
+      <div class="proj-num">Project 01</div>
+      <div class="proj-name">Client Onboarding System</div>
+      <div class="proj-company">Lumora Agency</div>
+      <div class="proj-industry">Digital Marketing · 12-person team</div>
+      <span class="proj-arrow">›</span>
+    </div>
+
+    <div class="proj-card" onclick="toggleProject(1, this)">
+      <div class="proj-num">Project 02</div>
+      <div class="proj-name">Social Media Content Ops</div>
+      <div class="proj-company">Vibe Social Co.</div>
+      <div class="proj-industry">Social Media Agency · 8-person team</div>
+      <span class="proj-arrow">›</span>
+    </div>
+
+    <div class="proj-card" onclick="toggleProject(2, this)">
+      <div class="proj-num">Project 03</div>
+      <div class="proj-name">Fitness Coaching Operations</div>
+      <div class="proj-company">Apex Performance Co.</div>
+      <div class="proj-industry">Online Fitness Coaching · 3-person team</div>
+      <span class="proj-arrow">›</span>
+    </div>
+
+    <div class="proj-card" onclick="toggleProject(3, this)">
+      <div class="proj-num">Project 04</div>
+      <div class="proj-name">Executive Assistant Ops Hub</div>
+      <div class="proj-company">Stride Capital Group</div>
+      <div class="proj-industry">Boutique Investment Firm · 6 staff</div>
+      <span class="proj-arrow">›</span>
+    </div>
+
+    <div class="proj-card" onclick="toggleProject(4, this)">
+      <div class="proj-num">Project 05</div>
+      <div class="proj-name">Hiring & Team Onboarding</div>
+      <div class="proj-company">NovaBuild Labs</div>
+      <div class="proj-industry">SaaS Startup · 22 employees</div>
+      <span class="proj-arrow">›</span>
+    </div>
+
+    <div class="proj-card" onclick="toggleProject(5, this)">
+      <div class="proj-num">Project 06</div>
+      <div class="proj-name">Customer Support Operations</div>
+      <div class="proj-company">Clarity Health App</div>
+      <div class="proj-industry">Health Tech · 250K users</div>
+      <span class="proj-arrow">›</span>
+    </div>
+
+    <!-- Detail drawer — spans full grid -->
+    <div class="proj-detail" id="proj-detail"></div>
+
+  </div>
+</section>
+
+<!-- WORKFLOWS -->
+<section id="workflows">
+  <div class="section-eyebrow">Workflow Design</div>
+  <h2 class="section-title">Every step <em>mapped and owned.</em></h2>
+  <p class="section-sub">End-to-end process flows I designed for each operational system.</p>
+
+  <div class="wf-section">
+    <div class="wf-item">
+      <div class="wf-title">Client Onboarding — Lumora Agency</div>
+      <div class="workflow-wrap">
+        <div class="workflow-flow">
+          <span class="wf-step">Lead Inquiry</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Discovery Call</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Proposal Sent</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Contract Signed</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Invoice Paid</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Welcome Email</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Kickoff Call</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Workspace Setup</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Active Client ✓</span>
+        </div>
+      </div>
+    </div>
+    <div class="wf-item">
+      <div class="wf-title">Content Production — Vibe Social Co.</div>
+      <div class="workflow-wrap">
+        <div class="workflow-flow">
+          <span class="wf-step">Content Brief</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Research</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Draft Created</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Internal Review</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Client Approval</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Design Assets</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Final QC</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Scheduled</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Published ✓</span>
+        </div>
+      </div>
+    </div>
+    <div class="wf-item">
+      <div class="wf-title">Coaching Client Lifecycle — Apex Performance Co.</div>
+      <div class="workflow-wrap">
+        <div class="workflow-flow">
+          <span class="wf-step">Lead Opt-in</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Intake Form</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Strategy Call</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Program Assigned</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Payment Confirmed</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Onboarding Kit Sent</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Week 1 Check-in</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Active Coaching</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Renewal / Referral ✓</span>
+        </div>
+      </div>
+    </div>
+    <div class="wf-item">
+      <div class="wf-title">Hiring Pipeline — NovaBuild Labs</div>
+      <div class="workflow-wrap">
+        <div class="workflow-flow">
+          <span class="wf-step">Job Post Live</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Applications In</span><span class="wf-arrow">→</span>
+          <span class="wf-step">ATS Screening</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Phone Screen</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Skills Assessment</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Panel Interview</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Offer Sent</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Day 1 Onboarding</span><span class="wf-arrow">→</span>
+          <span class="wf-step">30-60-90 Plan ✓</span>
+        </div>
+      </div>
+    </div>
+    <div class="wf-item">
+      <div class="wf-title">Support Ticket Flow — Clarity Health App</div>
+      <div class="workflow-wrap">
+        <div class="workflow-flow">
+          <span class="wf-step">Ticket Created</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Auto-Categorized</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Priority Assigned</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Agent Assigned</span><span class="wf-arrow">→</span>
+          <span class="wf-step">First Response</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Investigation</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Resolution</span><span class="wf-arrow">→</span>
+          <span class="wf-step">CSAT Survey</span><span class="wf-arrow">→</span>
+          <span class="wf-step">Ticket Closed ✓</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOPs -->
+<section id="sops">
+  <div class="section-eyebrow">Documentation</div>
+  <h2 class="section-title">SOPs that <em>actually get followed.</em></h2>
+  <p class="section-sub">A sample of the 24 standard operating procedures built across these projects.</p>
+
+  <div class="sop-list">
+    <div class="sop-card">
+      <div class="sop-name">SOP-001 · Client Onboarding Process</div>
+      <div class="sop-owner">Owner: Operations Manager · Tools: ClickUp, Notion, Dubsado</div>
+      <ol class="sop-steps">
+        <li>Update client status in ClickUp to "Active Client" upon contract signature — triggers automated onboarding task list</li>
+        <li>Send Welcome Email within 2 hours using approved template with kickoff booking link and Notion access</li>
+        <li>Complete client profile in Notion — all database fields, signed contract upload, dedicated Slack channel created</li>
+        <li>Conduct 60-min kickoff call within 5 business days using Kickoff Call Template</li>
+        <li>Build client's ClickUp project workspace within 24 hours of kickoff, assign team, set milestones</li>
+        <li>Send "You're All Set" confirmation — project timeline, contact info, ClickUp access. Mark onboarding complete.</li>
+      </ol>
+    </div>
+    <div class="sop-card">
+      <div class="sop-name">SOP-002 · Content Approval Workflow</div>
+      <div class="sop-owner">Owner: Content Manager · Tools: ClickUp, Notion, Loom, Slack</div>
+      <ol class="sop-steps">
+        <li>Brief approved in ClickUp — writer tagged, status set to "In Draft," deadline auto-calculated 5 days pre-publish</li>
+        <li>Internal review by Content Lead within 24 hours — feedback as ClickUp comment, status updated accordingly</li>
+        <li>Client review package prepared: Loom walkthrough + Notion page, 48-hour review window with 24-hr reminder</li>
+        <li>Client approves via Notion comment or email — designer finalizes assets within 24 hours</li>
+        <li>Final QC checklist completed — content scheduled. Status set to "Scheduled."</li>
+      </ol>
+    </div>
+    <div class="sop-card">
+      <div class="sop-name">SOP-003 · Escalation Protocol</div>
+      <div class="sop-owner">Owner: Operations Manager · Tools: Slack, ClickUp, Email</div>
+      <ol class="sop-steps">
+        <li>Team member flags task in ClickUp with "Escalation Needed" tag and posts in #escalations Slack channel</li>
+        <li>Ops Manager acknowledges within 1 hour — categorizes as: ops-level, executive decision, or client-facing</li>
+        <li>Client-facing issues: holding message sent within 2 hours, ETA committed within 4 hours</li>
+        <li>Resolution documented in Notion incident log — root cause identified, prevention plan communicated to client</li>
+      </ol>
+    </div>
+    <div class="sop-card">
+      <div class="sop-name">SOP-004 · Weekly Reporting Cycle</div>
+      <div class="sop-owner">Owner: Operations Manager · Tools: ClickUp, Notion, Google Sheets</div>
+      <ol class="sop-steps">
+        <li>Monday 8:00 AM: Pull KPI data from ClickUp dashboards, update Google Sheets master KPI tracker</li>
+        <li>Complete weekly executive summary in Notion — wins, blockers, at-risk items, one headline metric per department</li>
+        <li>Send report to leadership by Monday noon — flag red metrics with recommended actions</li>
+        <li>Lead 15-minute Monday Operations Standup — assign action items in ClickUp with owners and due dates</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- AUTOMATIONS -->
+<section id="automations">
+  <div class="section-eyebrow">Automation Stack</div>
+  <h2 class="section-title">Built to run <em>without you.</em></h2>
+  <p class="section-sub">Key automations from the project stack — Zapier, Make, and ClickUp native automations.</p>
+
+  <div class="auto-grid">
+    <div class="auto-card">
+      <span class="auto-badge badge-zap">Zapier</span>
+      <div class="auto-title">Payment Confirmed → Onboarding Triggered</div>
+      <div class="auto-body">Trigger: Stripe payment succeeded. Updates client status in ClickUp, sends Welcome Email, creates Notion client page, posts to #new-clients Slack.</div>
+      <div class="auto-impact">→ Onboarding starts within 5 min of payment</div>
+    </div>
+    <div class="auto-card">
+      <span class="auto-badge badge-zap">Zapier</span>
+      <div class="auto-title">Lead Capture → CRM + Welcome Sequence</div>
+      <div class="auto-body">Trigger: Typeform submission. Adds to HubSpot CRM, tags lead, enrolls in 5-email nurture sequence, creates ClickUp follow-up task for sales rep.</div>
+      <div class="auto-impact">→ 100% follow-up rate, zero manual data entry</div>
+    </div>
+    <div class="auto-card">
+      <span class="auto-badge badge-make">Make</span>
+      <div class="auto-title">Weekly KPI Report Auto-Builder</div>
+      <div class="auto-body">Every Sunday 11 PM: pulls ClickUp + Stripe data, compiles into Google Sheets template, generates PDF, emails to CEO and COO automatically.</div>
+      <div class="auto-impact">→ 3-hour reporting task reduced to 0 minutes</div>
+    </div>
+    <div class="auto-card">
+      <span class="auto-badge badge-make">Make</span>
+      <div class="auto-title">Content Calendar Sync</div>
+      <div class="auto-body">Trigger: ClickUp task → "Approved." Extracts post data and pushes to Buffer/Later scheduling queue via Airtable content calendar sync.</div>
+      <div class="auto-impact">→ Zero missed publish dates across all clients</div>
+    </div>
+    <div class="auto-card">
+      <span class="auto-badge badge-cu">ClickUp</span>
+      <div class="auto-title">Contract Signed → Onboarding Task Created</div>
+      <div class="auto-body">Trigger: Status → "Active Client." Clones onboarding template, assigns account manager, sets 7-day due date chain automatically.</div>
+      <div class="auto-impact">→ Consistent onboarding every single time</div>
+    </div>
+    <div class="auto-card">
+      <span class="auto-badge badge-zap">Zapier</span>
+      <div class="auto-title">Support Ticket → Agent Assigned + SLA Timer</div>
+      <div class="auto-body">Trigger: Urgent Intercom ticket. Assigns to senior agent, creates ClickUp task with 2-hr SLA timer, DMs agent in Slack with full context.</div>
+      <div class="auto-impact">→ 97% SLA compliance on P1 tickets</div>
+    </div>
+  </div>
+</section>
+
+<!-- KPIs -->
+<section id="kpis">
+  <div class="section-eyebrow">KPI Dashboards</div>
+  <h2 class="section-title">Numbers that <em>tell the story.</em></h2>
+  <p class="section-sub">Sample outcomes from operational systems built across the six portfolio projects.</p>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">Onboarding Time</div>
+      <div class="kpi-val">4.2 days</div>
+      <div class="kpi-target">↓ from 14 days</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Client Retention</div>
+      <div class="kpi-val">92%</div>
+      <div class="kpi-target">↑ from 68%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">First Response Time</div>
+      <div class="kpi-val">1.8 hrs</div>
+      <div class="kpi-target">↓ from 8 hrs</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Content Approval Cycle</div>
+      <div class="kpi-val">2 days</div>
+      <div class="kpi-target">↓ from 7 days</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Client NPS</div>
+      <div class="kpi-val">72</div>
+      <div class="kpi-target">↑ from 54</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">CSAT Score</div>
+      <div class="kpi-val">4.6 / 5</div>
+      <div class="kpi-target">↑ from 3.2</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Weekly Admin Hours Saved</div>
+      <div class="kpi-val">11 hrs</div>
+      <div class="kpi-target">via automation</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Time-to-Hire</div>
+      <div class="kpi-val">22 days</div>
+      <div class="kpi-target">↓ from 45 days</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME BULLETS -->
+<section id="resume">
+  <div class="section-eyebrow">Skills in Action</div>
+  <h2 class="section-title">What this work <em>proves I can do.</em></h2>
+  <p class="section-sub">Operations achievements framed for premium remote roles.</p>
+
+  <ul class="resume-bullets">
+    <li>Designed and implemented end-to-end client onboarding system in ClickUp, <strong>reducing average onboarding time from 14 days to 4.2 days</strong> (70% improvement) for a 12-person digital marketing agency</li>
+    <li>Built automated lead-to-client pipeline using Zapier + ClickUp, <strong>eliminating 8+ hours of weekly manual data entry</strong> and achieving 100% follow-up compliance</li>
+    <li>Developed 24-SOP operations manual in Notion covering onboarding, communication, escalation, and QC protocols — <strong>reducing team errors by 60%</strong></li>
+    <li>Architected executive KPI dashboard system tracking 20+ metrics across revenue, retention, and operational efficiency — <strong>used weekly by CEO for strategic decision-making</strong></li>
+    <li>Streamlined content production workflow for social media agency managing 14 clients — <strong>reduced approval cycle from 7 days to 2 days</strong> using structured ClickUp statuses</li>
+    <li>Created Make automation for weekly executive reporting, pulling data from ClickUp + Stripe — <strong>saving 3 hours per week in manual compilation</strong></li>
+    <li>Rebuilt customer support operations for 250K-user app — <strong>improved CSAT from 3.2 → 4.6</strong> and reduced first response time from 8 hrs to 1.8 hrs</li>
+  </ul>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-eyebrow">Services & Pricing</div>
+  <h2 class="section-title">Clear scope. <em>Real results.</em></h2>
+  <p class="section-sub">Remote operations services for coaches, agencies, and service-based businesses.</p>
+
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-tier">Starter</div>
+      <div class="pricing-price">$1,500</div>
+      <div class="pricing-sub">One-time project</div>
+      <div class="pricing-feat">Single system build (onboarding or content workflow)</div>
+      <div class="pricing-feat">ClickUp or Notion setup</div>
+      <div class="pricing-feat">3 SOPs included</div>
+      <div class="pricing-feat">1-week delivery</div>
+      <div class="pricing-feat">Loom walkthrough handoff</div>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-tier">Growth — Most Popular</div>
+      <div class="pricing-price">$2,500–$3,500</div>
+      <div class="pricing-sub">Monthly retainer</div>
+      <div class="pricing-feat">Full operations management</div>
+      <div class="pricing-feat">ClickUp + Notion + Automations</div>
+      <div class="pricing-feat">Weekly KPI reporting</div>
+      <div class="pricing-feat">Ongoing SOP creation & updates</div>
+      <div class="pricing-feat">Dedicated Slack access</div>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-tier">Premium</div>
+      <div class="pricing-price">$5,000+</div>
+      <div class="pricing-sub">Monthly retainer</div>
+      <div class="pricing-feat">Fractional COO / Ops Director</div>
+      <div class="pricing-feat">Full systems overhaul</div>
+      <div class="pricing-feat">Team management included</div>
+      <div class="pricing-feat">Strategic ops consulting</div>
+      <div class="pricing-feat">Priority response & ownership</div>
+    </div>
+  </div>
+</section>
+
+<!-- 90-DAY ROADMAP -->
+<section id="roadmap">
+  <div class="section-eyebrow">Transition Roadmap</div>
+  <h2 class="section-title">90 days to <em>$2,500+/month.</em></h2>
+  <p class="section-sub">The exact plan for transitioning from VA/Admin into a senior operations role.</p>
+
+  <div class="roadmap">
+    <div class="rm-phase">
+      <div class="rm-left"><div class="rm-phase-label">Phase 1</div><div class="rm-phase-days">Days 1–30</div></div>
+      <div class="rm-line"></div>
+      <div class="rm-body">
+        <div class="rm-title">Master the Core Tools</div>
+        <div class="rm-items">Complete ClickUp certification (free) · Set up personal Notion workspace · 10 hrs of dashboard tutorials · Learn Zapier basics with 5 practice automations · Build Projects 1 & 2 fully in ClickUp + Notion · Record Loom walkthroughs for each</div>
+      </div>
+    </div>
+    <div class="rm-phase">
+      <div class="rm-left"><div class="rm-phase-label">Phase 2</div><div class="rm-phase-days">Days 31–60</div></div>
+      <div class="rm-line"></div>
+      <div class="rm-body">
+        <div class="rm-title">Build Portfolio & Credibility</div>
+        <div class="rm-items">Complete all 6 projects · Launch Notion portfolio site · Write 3 case study write-ups (problem → solution → result) · Rewrite LinkedIn using premium positioning copy · Post 3x/week about operations, systems, and automation · Connect with 20 online business owners per week</div>
+      </div>
+    </div>
+    <div class="rm-phase">
+      <div class="rm-left"><div class="rm-phase-label">Phase 3</div><div class="rm-phase-days">Days 61–90</div></div>
+      <div class="rm-line"></div>
+      <div class="rm-body">
+        <div class="rm-title">Land the First Paid Client</div>
+        <div class="rm-items">Offer 3 free 30-min "Ops Audits" to coaches or agency owners · Convert one audit into a paid engagement using the onboarding SOP · Apply to Operations Coordinator and OBM roles on LinkedIn and Remote.co · Target: first $2,500/mo retainer closed by Day 90 · Document results → request testimonial</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <div class="cta-text">
+    <h2>Ready to bring <em>order to your operations?</em></h2>
+    <p>I'm currently available for a dedicated full-time engagement. Let's talk about what your business needs.</p>
+  </div>
+  <div class="cta-btns">
+    <a href="mailto:lampong.tine@gmail.com" class="btn btn-primary">Work With Me</a>
+    <a href="https://christinelampong-portfolio.vercel.app/" class="btn btn-outline">← Back to Portfolio</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>Christine Lampong · Executive VA & Operations Coordinator · Remote, Philippines</span>
+  <div style="display:flex;gap:20px;">
+    <a href="mailto:lampong.tine@gmail.com">lampong.tine@gmail.com</a>
+    <a href="https://linkedin.com/in/christinelampong">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+const projects = [
+  {
+    name: "Client Onboarding System",
+    company: "Lumora Agency",
+    industry: "Full-service digital marketing agency · 12-person team · Monthly retainer $2K–$8K/client",
+    problem: "Onboarding took 2–3 weeks and felt inconsistent. New clients experienced confusion, missed kickoff calls, and delayed project starts. No standardized process existed — every account manager did it differently.",
+    tools: ["ClickUp","Notion","Zapier","Dubsado","Calendly","Loom","Slack","DocuSign"],
+    workflow: ["Lead Inquiry","Discovery Call","Proposal Sent","Contract Signed","Invoice Paid","Welcome Email","Kickoff Call","Workspace Setup","Active Client ✓"],
+    impact: ["Reduced onboarding time from 14 days → 4.2 days (70% improvement)","Welcome email send rate increased from 60% → 100%","Client NPS improved from 54 → 72","Onboarding errors eliminated — was averaging 3 per month","Team saved 6+ hours per new client in manual coordination"],
+    loom: "Open with the 'before' pain point (30 sec) → Show the ClickUp workspace hierarchy (1 min) → Walk through the onboarding flow live (1 min) → Demo the Zapier automation triggering on payment (30 sec) → Show the Notion SOP + client database (30 sec) → Close with impact numbers. Total: 4–5 min."
+  },
+  {
+    name: "Social Media Content Operations",
+    company: "Vibe Social Co.",
+    industry: "Social media management agency · 8-person team · Retainer $1,500–$4,000/client",
+    problem: "Content production was chaotic — missed deadlines, duplicate revisions, clients constantly emailing for status updates. No single source of truth for approval status. Creators, designers, and schedulers were using three different tools with no sync.",
+    tools: ["ClickUp","Notion","Buffer","Loom","Airtable","Make","Slack","Canva"],
+    workflow: ["Content Brief","Research","Draft Created","Internal Review","Client Approval","Revision (if needed)","Design Assets","Final QC","Scheduled","Published ✓"],
+    impact: ["Approval cycle reduced from 7 days → 2 days","Zero missed publish dates (previously 4–6 per month)","Client revision requests down 45%","Team capacity increased by 30% — no more status update interruptions","Client satisfaction scores improved across all 14 accounts"],
+    loom: "Start with the content calendar view in ClickUp (overview) → Drill into one content piece moving through statuses → Show the Make scenario syncing to Buffer → Open the Notion client approval page → Show how client comments become ClickUp tasks automatically. Total: 5 min."
+  },
+  {
+    name: "Fitness Coaching Operations System",
+    company: "Apex Performance Co.",
+    industry: "Online fitness coaching & group programs · 3-person team · 1:1 coaching $500–$1,200/mo",
+    problem: "The head coach was spending 15+ hours per week on admin tasks — manually following up with leads, tracking client check-ins in a spreadsheet, and sending programs via email. No CRM, no automation, no delegation structure.",
+    tools: ["ClickUp","Notion","TrueCoach","Zapier","Calendly","Stripe","Loom","Slack"],
+    workflow: ["Lead Opt-in","Intake Form","Strategy Call","Program Assigned","Payment Confirmed","Onboarding Kit Sent","Week 1 Check-in","Active Coaching","Progress Review","Renewal / Referral ✓"],
+    impact: ["Coach admin time reduced from 15 hrs → 4 hrs per week","Lead-to-client conversion rate up 28% with structured follow-up","Client retention improved from 68% → 89%","Revenue increased 40% in 60 days (freed capacity for new clients)","Entire check-in and progress system runs without coach involvement"],
+    loom: "Open with the Zapier flow from Stripe payment → onboarding (show it live) → Tour the ClickUp coaching hub (client list, check-in tasks, progress tracker) → Show the Notion client onboarding page template → Demonstrate the automated week 1 check-in reminder. Total: 5 min."
+  },
+  {
+    name: "Executive Assistant Operations Hub",
+    company: "Stride Capital Group",
+    industry: "Boutique private equity & advisory firm · 6 staff · 2 partners + 2 analysts + 1 EA + 1 ops",
+    problem: "Partner time was being mismanaged — scheduling was reactive, follow-ups were missed, meeting prep was rushed, and business-critical information was scattered across email threads and personal spreadsheets. The EA had no system.",
+    tools: ["Notion","ClickUp","Google Workspace","Calendly","Loom","Slack","Zoom","DocuSign"],
+    workflow: ["Daily Briefing Prepared","Priority Triage","Task Delegation","Calendar Managed","Comms Monitored","Meeting Prep Completed","Follow-ups Tracked","EOD Summary Sent ✓"],
+    impact: ["Partner admin burden reduced by 60%","Zero missed follow-ups — previously 8–10 per month","Board meeting prep time reduced from 6 hrs → 90 min","Information retrieval time reduced by 75% via Notion wiki","Partners recovered 10+ hours per week for billable and strategic work"],
+    loom: "Start with the daily briefing template in Notion → Walk through the partner task board in ClickUp → Show the meeting prep template and how it's populated → Demo the follow-up tracker with automated reminders → Show the Notion company wiki structure. Total: 5 min."
+  },
+  {
+    name: "Hiring & Team Onboarding System",
+    company: "NovaBuild Labs",
+    industry: "B2B project management SaaS startup · 22 employees scaling to 40 · Remote-first",
+    problem: "Hiring was chaotic — no defined ATS process, inconsistent interview stages across departments, no standardized scoring rubric. New hires arrived with no onboarding plan and were not fully productive until month 3. 30% of early hires had left within 6 months.",
+    tools: ["ClickUp","Notion","Greenhouse","Slack","Loom","Google Workspace","Make","BambooHR"],
+    workflow: ["Job Post Live","Applications In","ATS Screening","Phone Screen","Skills Assessment","Panel Interview","Offer Sent","Offer Accepted","Pre-boarding","Day 1 Onboarding","30-60-90 Plan ✓"],
+    impact: ["Time-to-hire reduced from 45 days → 22 days","New hire productivity at month 1 improved 65%","Hiring manager time investment reduced by 40% via structured stages","Offer acceptance rate improved from 71% → 88%","Early attrition dropped significantly with structured 30-60-90 plans"],
+    loom: "Open with the ClickUp hiring pipeline (kanban view per role) → Show one candidate moving through stages with scorecards → Open the Notion new hire portal template → Walk through the 30-60-90 day plan structure → Show Make automation assigning onboarding tasks on day of hire. Total: 6 min."
+  },
+  {
+    name: "Customer Support Operations System",
+    company: "Clarity Health App",
+    industry: "Mental wellness mobile app · 250K users · $12.99/mo subscription · 5-person support team",
+    problem: "Support tickets were piling up with no categorization system. First response time was over 8 hours. Agents were duplicating effort on the same tickets. CSAT sat at 3.2/5 and the team had no escalation protocol, leaving critical issues unresolved for days.",
+    tools: ["Intercom","ClickUp","Zapier","Notion","Slack","Loom","Google Sheets","Metabase"],
+    workflow: ["Ticket Created","Auto-Categorized","Priority Assigned","Agent Assigned","First Response","Investigation","Resolution","CSAT Survey Sent","Ticket Closed ✓"],
+    impact: ["First response time reduced from 8 hrs → 1.8 hrs","CSAT score improved from 3.2 → 4.6 / 5","Ticket volume down 22% (better self-service docs)","Agent productivity up 40% with clear assignment system","SLA compliance reached 97% for P1 tickets"],
+    loom: "Start with the Intercom → Zapier → ClickUp flow (show live ticket creation) → Walk through the priority tiers and SLA settings → Show the Notion escalation SOP → Demo the CSAT auto-send after ticket closure → Show the Metabase support dashboard with weekly metrics. Total: 5 min."
+  }
+];
+
+let openIdx = -1;
+
+function toggleProject(idx, card) {
+  const detail = document.getElementById('proj-detail');
+  const allCards = document.querySelectorAll('.proj-card');
+
+  if (openIdx === idx) {
+    detail.classList.remove('visible');
+    card.classList.remove('open');
+    openIdx = -1;
+    return;
+  }
+
+  allCards.forEach(c => c.classList.remove('open'));
+  card.classList.add('open');
+  openIdx = idx;
+
+  const p = projects[idx];
+  const toolsHtml = p.tools.map(t => `<span class="tool-pill">${t}</span>`).join('');
+  const impactHtml = p.impact.map(i => `<li><span class="impact-dot"></span>${i}</li>`).join('');
+  const flowHtml = p.workflow.map((s,i) =>
+    i < p.workflow.length - 1
+      ? `<span class="wf-step">${s}</span><span class="wf-arrow">→</span>`
+      : `<span class="wf-step">${s}</span>`
+  ).join('');
+
+  detail.innerHTML = `
+    <div class="detail-grid">
+      <div>
+        <div class="detail-block">
+          <div class="detail-label">Business Profile</div>
+          <p>${p.company} · ${p.industry}</p>
+        </div>
+        <div class="detail-block">
+          <div class="detail-label">Operational Problem</div>
+          <p>${p.problem}</p>
+        </div>
+        <div class="detail-block">
+          <div class="detail-label">Tools Used</div>
+          <div class="tool-list">${toolsHtml}</div>
+        </div>
+      </div>
+      <div>
+        <div class="detail-block">
+          <div class="detail-label">Measurable Impact</div>
+          <ul class="impact-list">${impactHtml}</ul>
+        </div>
+      </div>
+    </div>
+    <div class="detail-block">
+      <div class="detail-label">Workflow Map</div>
+      <div class="workflow-wrap"><div class="workflow-flow">${flowHtml}</div></div>
+    </div>
+    <div class="loom-tip">
+      <div class="lt-label">Loom Walkthrough Script</div>
+      <p>${p.loom}</p>
+    </div>
+  `;
+
+  detail.classList.add('visible');
+  setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+}
+</script>
+</body>
+</html>
