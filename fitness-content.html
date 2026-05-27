@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fitness Content Design — Christine Lampong</title>
+<meta name="description" content="High-converting fitness graphics, transformations, and social content design for coaches and fitness brands." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:       #1a1a1a;
+    --ink2:      #4a4a4a;
+    --ink3:      #888;
+    --rule:      #e8e4df;
+    --bg:        #faf9f7;
+    --bg2:       #f3f1ee;
+    --accent:    #2d5a3d;
+    --accent-lt: #edf3ef;
+    --serif:     'DM Serif Display', Georgia, serif;
+    --sans:      'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ─────────────────────────────────────────── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,249,247,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 6vw;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 62px;
+  }
+  .nav-logo {
+    font-family: var(--serif); font-size: 18px; color: var(--ink);
+    text-decoration: none; letter-spacing: -0.01em;
+  }
+  .nav-logo em { font-style: italic; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    font-size: 13px; font-weight: 400; color: var(--ink2);
+    text-decoration: none; letter-spacing: 0.02em;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a.active { color: var(--accent); font-weight: 500; }
+
+  /* ── HERO ────────────────────────────────────────── */
+  .hero {
+    padding: 80px 6vw 64px;
+    border-bottom: 1px solid var(--rule);
+    max-width: 860px;
+  }
+  .hero-eyebrow {
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-family: var(--serif); font-size: clamp(36px, 5vw, 54px);
+    line-height: 1.1; font-weight: 400; letter-spacing: -0.02em;
+    color: var(--ink); margin-bottom: 20px;
+  }
+  .hero h1 em { font-style: italic; }
+  .hero p {
+    font-size: 16px; color: var(--ink2); max-width: 580px;
+    line-height: 1.75; margin-bottom: 32px;
+  }
+  .hero-stats {
+    display: flex; gap: 40px; flex-wrap: wrap;
+  }
+  .stat-item { }
+  .stat-num {
+    font-family: var(--serif); font-size: 28px;
+    color: var(--ink); letter-spacing: -0.02em;
+  }
+  .stat-label { font-size: 12px; color: var(--ink3); margin-top: 2px; }
+
+  /* ── LAYOUT ──────────────────────────────────────── */
+  section { padding: 72px 6vw; border-bottom: 1px solid var(--rule); }
+
+  .section-eyebrow {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: var(--serif); font-size: clamp(26px, 3.5vw, 36px);
+    font-weight: 400; letter-spacing: -0.02em; line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  .section-title em { font-style: italic; }
+  .section-sub {
+    font-size: 15px; color: var(--ink2); max-width: 520px; line-height: 1.7;
+    margin-bottom: 48px;
+  }
+
+  /* ── PORTFOLIO GRID ──────────────────────────────── */
+  .port-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  .port-item {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .port-item:hover {
+    border-color: var(--accent);
+    box-shadow: 0 8px 24px rgba(45,90,61,0.08);
+  }
+
+  .port-image {
+    width: 100%; height: 380px;
+    background: var(--bg2);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink3); font-size: 13px; text-align: center; padding: 20px;
+    font-style: italic;
+  }
+
+  .port-content { padding: 24px; }
+  .port-type {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 8px;
+  }
+  .port-title {
+    font-size: 16px; font-weight: 500; margin-bottom: 8px; color: var(--ink);
+  }
+  .port-desc {
+    font-size: 13px; color: var(--ink2); line-height: 1.6; margin-bottom: 12px;
+  }
+  .port-tags {
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .tag {
+    font-size: 11px; padding: 3px 10px; border-radius: 16px;
+    background: var(--bg2); color: var(--ink2); border: 0.5px solid var(--rule);
+  }
+
+  /* ── CASE STUDY ──────────────────────────────────── */
+  .case-study {
+    background: #fff; border: 1px solid var(--rule); border-radius: 12px;
+    padding: 36px 32px; margin-bottom: 24px;
+  }
+
+  .cs-header { margin-bottom: 24px; }
+  .cs-label {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 8px;
+  }
+  .cs-title {
+    font-size: 18px; font-weight: 500; color: var(--ink); margin-bottom: 4px;
+  }
+  .cs-subtitle {
+    font-size: 14px; color: var(--ink2);
+  }
+
+  .cs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+  @media (max-width: 700px) { .cs-grid { grid-template-columns: 1fr; } }
+
+  .cs-block { }
+  .cs-block h3 {
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 8px;
+  }
+  .cs-block p {
+    font-size: 13px; color: var(--ink2); line-height: 1.7;
+  }
+
+  .cs-breakdown { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 14px; }
+  .cs-icon {
+    width: 32px; height: 32px; border-radius: 8px; background: var(--accent-lt);
+    color: var(--accent); display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .cs-breakdown-text { font-size: 13px; color: var(--ink2); line-height: 1.6; }
+
+  /* ── DESIGN PROCESS ──────────────────────────────── */
+  .process-list {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;
+  }
+
+  .process-card {
+    background: var(--bg2); border-radius: 10px; padding: 20px;
+    text-align: center;
+  }
+  .process-num {
+    font-family: var(--serif); font-size: 32px; color: var(--accent);
+    letter-spacing: -0.02em; margin-bottom: 8px;
+  }
+  .process-title { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+  .process-desc { font-size: 12px; color: var(--ink2); line-height: 1.6; }
+
+  /* ── PRICING ─────────────────────────────────────── */
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; }
+  @media (max-width: 720px) { .pricing-grid { grid-template-columns: 1fr; } }
+
+  .pricing-card { background: var(--bg); padding: 28px 24px; }
+  .pricing-card.featured { background: var(--accent); }
+
+  .pricing-tier { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink3); margin-bottom: 8px; font-weight: 500; }
+  .pricing-card.featured .pricing-tier { color: rgba(255,255,255,0.65); }
+
+  .pricing-price { font-family: var(--serif); font-size: 28px; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 2px; }
+  .pricing-card.featured .pricing-price { color: #fff; }
+
+  .pricing-sub { font-size: 12px; color: var(--ink3); margin-bottom: 18px; }
+  .pricing-card.featured .pricing-sub { color: rgba(255,255,255,0.6); }
+
+  .pricing-feat { font-size: 12px; color: var(--ink2); padding: 8px 0; border-bottom: 1px solid var(--rule); line-height: 1.5; }
+  .pricing-card.featured .pricing-feat { color: rgba(255,255,255,0.8); border-bottom-color: rgba(255,255,255,0.15); }
+  .pricing-feat:last-child { border-bottom: none; }
+
+  /* ── CTA ─────────────────────────────────────────── */
+  .cta-box {
+    background: var(--accent-lt); border: 1px solid rgba(45,90,61,0.2);
+    border-radius: 12px; padding: 32px; margin-top: 32px;
+    text-align: center;
+  }
+  .cta-box h3 {
+    font-family: var(--serif); font-size: 24px; color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .cta-box p {
+    font-size: 14px; color: var(--ink2); margin-bottom: 20px;
+  }
+  .btn {
+    display: inline-block; font-size: 13px; font-weight: 500;
+    padding: 11px 24px; border-radius: 6px; text-decoration: none;
+    transition: all 0.18s; letter-spacing: 0.01em;
+    background: var(--accent); color: #fff; border: 1px solid var(--accent);
+  }
+  .btn:hover { background: #1e3f2b; border-color: #1e3f2b; }
+
+  /* ── FOOTER ──────────────────────────────────────── */
+  footer {
+    padding: 28px 6vw; border-top: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+    font-size: 13px; color: var(--ink3);
+  }
+  footer a { color: var(--ink3); text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+
+  /* ── RESPONSIVE ──────────────────────────────────── */
+  @media (max-width: 600px) {
+    nav { padding: 0 4vw; }
+    .nav-links { gap: 16px; }
+    section { padding: 52px 4vw; }
+    .hero { padding: 52px 4vw 48px; }
+    .cs-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://christinelampong-portfolio.vercel.app/" class="nav-logo">Christine <em>Lampong</em></a>
+  <ul class="nav-links">
+    <li><a href="https://christinelampong-portfolio.vercel.app/#about">About</a></li>
+    <li><a href="https://christinelampong-portfolio.vercel.app/#experience">Experience</a></li>
+    <li><a href="https://christinelampong-portfolio.vercel.app/#skills">Skills</a></li>
+    <li><a href="projects.html">Operations</a></li>
+    <li><a href="fitness-content.html" class="active">Fitness Design</a></li>
+    <li><a href="https://christinelampong-portfolio.vercel.app/#contact">Work With Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Fitness Content Design</div>
+  <h1>Graphics that <em>convert.</em></h1>
+  <p>High-performing social content for fitness coaches. Transformations, testimonials, and urgency-driven graphics designed to attract clients and drive engagement.</p>
+  <div class="hero-stats">
+    <div class="stat-item"><div class="stat-num">100+</div><div class="stat-label">Graphics created</div></div>
+    <div class="stat-item"><div class="stat-num">15+</div><div class="stat-label">Coaches served</div></div>
+    <div class="stat-item"><div class="stat-num">3.2x</div><div class="stat-label">Avg engagement lift</div></div>
+  </div>
+</div>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-eyebrow">Work Samples</div>
+  <h2 class="section-title">Designs that <em>tell stories.</em></h2>
+  <p class="section-sub">Each graphic is built with a specific goal: create urgency, showcase transformation, drive action.</p>
+
+  <div class="port-grid">
+    <div class="port-item" onclick="openCase(0)">
+      <div class="port-image">Before/After Transformation<br><small>(Face blurred for privacy)</small></div>
+      <div class="port-content">
+        <div class="port-type">Transformation Post</div>
+        <div class="port-title">7 LBS in 5 Weeks</div>
+        <div class="port-desc">Emotional hook + transformation proof + direct CTA. Designed to stop scrolls and drive DM inquiries.</div>
+        <div class="port-tags">
+          <span class="tag">Urgency</span>
+          <span class="tag">Proof</span>
+          <span class="tag">CTA-Driven</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="port-item" onclick="openCase(1)">
+      <div class="port-image">Social Proof / Coaching<br><small>(Portrait design)</small></div>
+      <div class="port-content">
+        <div class="port-type">Social Proof</div>
+        <div class="port-title">600+ Men Coached</div>
+        <div class="port-desc">Authority builder. Combines testimonial, transformation proof, and credibility narrative. Addresses common objections upfront.</div>
+        <div class="port-tags">
+          <span class="tag">Authority</span>
+          <span class="tag">Objection Handler</span>
+          <span class="tag">Portfolio</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="port-item" onclick="openCase(2)">
+      <div class="port-image">Before/After Physique<br><small>(Body-focused)</small></div>
+      <div class="port-content">
+        <div class="port-type">Transformation Series</div>
+        <div class="port-title">From Soft to Shredded</div>
+        <div class="port-desc">Comparison-driven. Clear visual metrics (body fat, muscle gain). Icons reinforce key benefits. Carousel-ready format.</div>
+        <div class="port-tags">
+          <span class="tag">Before/After</span>
+          <span class="tag">Metrics</span>
+          <span class="tag">Carousel</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="case-studies">
+  <div class="section-eyebrow">Design Breakdown</div>
+  <h2 class="section-title">How these <em>actually work.</em></h2>
+  <p class="section-sub">Behind-the-scenes breakdown of the strategy, psychology, and conversion mechanics in each design.</p>
+
+  <!-- Case 1 -->
+  <div class="case-study">
+    <div class="cs-header">
+      <div class="cs-label">Case Study 01</div>
+      <div class="cs-title">The Testimonial Hook</div>
+      <div class="cs-subtitle">"5 weeks ago she said 'I have a holiday in 5 weeks'" — Transformation Post</div>
+    </div>
+    <div class="cs-grid">
+      <div class="cs-block">
+        <h3>Design Elements</h3>
+        <div class="cs-breakdown">
+          <div class="cs-icon">🎯</div>
+          <div class="cs-breakdown-text"><strong>Emotional Hook:</strong> Opens with her goal, not your service. Makes it relatable.</div>
+        </div>
+        <div class="cs-breakdown">
+          <div class="cs-icon">🔥</div>
+          <div class="cs-breakdown-text"><strong>Bold Typography:</strong> Massive hot pink header pulls attention. High contrast against dark background.</div>
+        </div>
+        <div class="cs-breakdown">
+          <div class="cs-icon">📸</div>
+          <div class="cs-breakdown-text"><strong>Transformation Proof:</strong> Side-by-side before/after. Visible abs and definition = credibility.</div>
+        </div>
+        <div class="cs-breakdown">
+          <div class="cs-icon">📊</div>
+          <div class="cs-breakdown-text"><strong>Metrics Bar:</strong> "7 LBS DROPPED" in bold. Specific numbers build trust.</div>
+        </div>
+      </div>
+      <div class="cs-block">
+        <h3>Copy Strategy</h3>
+        <div class="cs-breakdown">
+          <div class="cs-icon">💬</div>
+          <div class="cs-breakdown-text"><strong>Subheader:</strong> "This is what we did about it." Positions YOU as the problem-solver.</div>
+        </div>
+        <div class="cs-breakdown">
+          <div class="cs-icon">✅</div>
+          <div class="cs-breakdown-text"><strong>Proof Points:</strong> "No crash diets. No skipping life. Just the right plan." Addresses fears.</div>
+        </div>
+        <div class="cs-breakdown">
+          <div class="cs-icon">🎯</div>
+          <div class="cs-breakdown-text"><strong>CTA:</strong> 'DM me "HOLIDAY" to get started.' Specific action word. Creates low-friction engagement.</div>
+        </div>
+        <div class="cs-breakdown">
+          <div class="cs-icon">🚀</div>
+          <div class="cs-breakdown-text"><strong>Closing Line:</strong> "Results like this don't need a year — they need the RIGHT COACH." Subconscious authority play.</div>
+        </div>
+      </div>
+    </div>
+    <div style="background: var(--bg2); border-radius: 10px; padding: 16px; margin-top: 16px;">
+      <div style="font-size: 12px; font-weight: 500; color: var(--accent); margin-bottom: 8px;">WHY THIS WORKS</div>
+      <div style="font-size: 13px; color: var(--ink2); line-height: 1.7;">
+        This post follows the "Problem-Solution-Result" framework. It starts with a relatable client problem (deadline for vacation), shows the emotional journey, proves the results with visual evidence, and ends with a low-friction CTA. The specific action ("DM 'HOLIDAY'") is way more effective than generic "Contact me" because it feels like joining a community, not being sold to.
+      </div>
+    </div>
+  </div>
+
+  <!-- Case 2 -->
+  <div class="case-study">
+    <div class="cs-header">
+      <div class="cs-label">Case Study 02</div>
+      <div class="cs-title">The Authority Builder</div>
+      <div class="cs-subtitle">"I've coached 600+ men through a body transformation" — Social Proof Post</div>
+    </div>
+    <div class="cs-grid">
+      <div class="cs-block">
+        <h3>Design Elements</h3>
+        <div class="cs-breakdown">
+          <div class="cs-icon">📍</div>
+          <div class="cs-breakdown-text"><strong>Distressed Typography:</strong> Textured white lettering = credibility. Looks like a gym poster, not a pretty graphic.</div>
+        </div>
+        <div class="cs-breakdown">
+          <div class="cs-icon">🟠</div>
+          <div class="cs-breakdown-text"><strong>Orange Accent Bar:</strong> Breaks up dark background. Guides eye to key phrase.</div>
+        </div>
+        <div class="cs-breakdown">
+          <div class="cs-icon">👤</div>
+          <div class="cs-breakdown-text"><strong>Coach Portrait:</strong> Shows real person, not generic. Builds trust through authenticity.</div>
+        </div>
+        <div class="cs-breakdown">
+          <div class="cs-icon">💪</div>
+          <div class="cs-breakdown-text"><strong>Gym Context:</strong> Dumbbell visible. Immediately establishes credibility as a real coach.</div>
+        </div>
+      </div>
+      <div class="cs-block">
+        <h3>Psychological Strategy</h3>
+        <div class="cs-breakdown">
+          <div class="cs-icon">🎯</div>
+          <div class="cs-breakdown-text"><strong>Opens with Objection:</strong> "Here's what nobody wants to admit about why most of them struggled before coaching." Addresses the real fear.</div>
+        </div>
+        <div class="cs-breakdown">
+          <div class="cs-icon">🔓</div>
+          <div class="cs-breakdown-text"><strong>Vulnerability Angle:</strong> Suggests most people struggle = the prospect isn't alone. Reduces shame.</div>
+        </div>
+        <div class="cs-breakdown">
+          <div class="cs-icon">🏆</div>
+          <div class="cs-breakdown-text"><strong>Big Number:</strong> "600+" is high enough to be impressive, low enough to be believable. Not 10,000.</div>
+        </div>
+        <div class="cs-breakdown">
+          <div class="cs-icon">⭐</div>
+          <div class="cs-breakdown-text"><strong>No CTA:</strong> This is pure authority building. Let it do its job without asking for immediate action.</div>
+        </div>
+      </div>
+    </div>
+    <div style="background: var(--bg2); border-radius: 10px; padding: 16px; margin-top: 16px;">
+      <div style="font-size: 12px; font-weight: 500; color: var(--accent); margin-bottom: 8px;">WHY THIS WORKS</div>
+      <div style="font-size: 13px; color: var(--ink2); line-height: 1.7;">
+        This graphic doesn't ask for anything. It's pure positioning. It acknowledges a common fear (struggling before coaching), positions the coach as someone who's seen it 600+ times, and uses raw authenticity (gym setting, real person) to build credibility. The distressed typography and gym aesthetic make it feel earned, not designed. Prospects who see this think "This person knows what they're doing" and remember it.
+      </div>
+    </div>
+  </div>
+
+  <!-- Case 3 -->
+  <div class="case-study">
+    <div class="cs-header">
+      <div class="cs-label">Case Study 03</div>
+      <div class="cs-title">The Comparison Hook</div>
+      <div class="cs-subtitle">"Before" vs "After" Physique — Transformation Series</div>
+    </div>
+    <div class="cs-grid">
+      <div class="cs-block">
+        <h3>Design Elements</h3>
+        <div class="cs-breakdown">
+          <div class="cs-icon">🎯</div>
+          <div class="cs-breakdown-text"><strong>Big Header:</strong> "BART PHYSIQUE CHANGE" — massive, easy to read from mobile scroll.</div>
+        </div>
+        <div class="cs-breakdown">
+          <div class="cs-icon">🔲</div>
+          <div class="cs-breakdown-text"><strong>Rounded Photo Frames:</strong> Softens the images. Makes it feel premium, not clinical.</div>
+        </div>
+        <div class="cs-breakdown">
+          <div class="cs-icon">🟠</div>
+          <div class="cs-breakdown-text"><strong>Orange Labels:</strong> "BEFORE" vs "AFTER" in bold orange. Clear visual direction.</div>
+        </div>
+        <div class="cs-breakdown">
+          <div class="cs-icon">📋</div>
+          <div class="cs-breakdown-text"><strong>Icon Row:</strong> 3 benefit icons at bottom (body fat, shape, photo-ready). Makes benefits scannable.</div>
+        </div>
+      </div>
+      <div class="cs-block">
+        <h3>Conversion Mechanics</h3>
+        <div class="cs-breakdown">
+          <div class="cs-icon">👀</div>
+          <div class="cs-breakdown-text"><strong>Stop Power:</strong> Body transformation = highest engagement rate on fitness feeds. People stop to look.</div>
+        </div>
+        <div class="cs-breakdown">
+          <div class="cs-icon">📊</div>
+          <div class="cs-breakdown-text"><strong>Metrics Clarity:</strong> 3 specific benefits listed. Prospects know exactly what to expect.</div>
+        </div>
+        <div class="cs-breakdown">
+          <div class="cs-icon">📱</div>
+          <div class="cs-breakdown-text"><strong>Carousel Format:</strong> Design works as slide 1 of a series. "Swipe to see more" = built-in engagement.</div>
+        </div>
+        <div class="cs-breakdown">
+          <div class="cs-icon">✨</div>
+          <div class="cs-breakdown-text"><strong>Aesthetic:</strong> Dark, premium look. Makes transformation feel like a big deal, not just vanity.</div>
+        </div>
+      </div>
+    </div>
+    <div style="background: var(--bg2); border-radius: 10px; padding: 16px; margin-top: 16px;">
+      <div style="font-size: 12px; font-weight: 500; color: var(--accent); margin-bottom: 8px;">WHY THIS WORKS</div>
+      <div style="font-size: 13px; color: var(--ink2); line-height: 1.7;">
+        Transformation content is the highest-converting content in fitness Instagram. This design maximizes that by being super clear (BEFORE/AFTER), adding visual interest (rounded frames, icon row), and making it easy to understand benefits at a glance. The carousel format means it shows up in feeds multiple times as people swipe, multiplying the exposure. Best used once per week to avoid audience fatigue.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-eyebrow">My Process</div>
+  <h2 class="section-title">How I design <em>for conversion.</em></h2>
+  <p class="section-sub">Each graphic starts with strategy, not aesthetics.</p>
+
+  <div class="process-list">
+    <div class="process-card">
+      <div class="process-num">1</div>
+      <div class="process-title">Strategy</div>
+      <div class="process-desc">What's the goal? Awareness? Engagement? Inquiry? I design differently for each.</div>
+    </div>
+    <div class="process-card">
+      <div class="process-num">2</div>
+      <div class="process-title">Copy Framework</div>
+      <div class="process-desc">Hook → Story → Proof → CTA. Written first, designed around it.</div>
+    </div>
+    <div class="process-card">
+      <div class="process-num">3</div>
+      <div class="process-title">Visual Design</div>
+      <div class="process-desc">Bold typography, high contrast, strategic color. Designed to stop scrolls on mobile.</div>
+    </div>
+    <div class="process-card">
+      <div class="process-num">4</div>
+      <div class="process-title">Optimization</div>
+      <div class="process-desc">A/B test copy, colors, and layouts. Iterate based on engagement metrics.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I CREATE -->
+<section id="what-i-create">
+  <div class="section-eyebrow">Services</div>
+  <h2 class="section-title">Types of content <em>I design.</em></h2>
+  <p class="section-sub">From transformation posts to authority builders to urgency-driven offers.</p>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+    <div style="background: #fff; border: 1px solid var(--rule); border-radius: 10px; padding: 20px;">
+      <div style="font-size: 14px; font-weight: 500; margin-bottom: 8px;">Transformation Posts</div>
+      <div style="font-size: 13px; color: var(--ink2); line-height: 1.7;">Before/after comparisons, progress updates, client testimonials with visual proof. Designed to stop scrolls and drive DM inquiries.</div>
+    </div>
+    <div style="background: #fff; border: 1px solid var(--rule); border-radius: 10px; padding: 20px;">
+      <div style="font-size: 14px; font-weight: 500; margin-bottom: 8px;">Authority Posts</div>
+      <div style="font-size: 13px; color: var(--ink2); line-height: 1.7;">Social proof graphics showing coaching credentials, client count, testimonials. Builds trust and positions you as an expert.</div>
+    </div>
+    <div style="background: #fff; border: 1px solid var(--rule); border-radius: 10px; padding: 20px;">
+      <div style="font-size: 14px; font-weight: 500; margin-bottom: 8px;">Offer Posts</div>
+      <div style="font-size: 13px; color: var(--ink2); line-height: 1.7;">Limited-time offers, challenge signups, program enrollments. Designed with urgency and clear CTAs to drive action.</div>
+    </div>
+    <div style="background: #fff; border: 1px solid var(--rule); border-radius: 10px; padding: 20px;">
+      <div style="font-size: 14px; font-weight: 500; margin-bottom: 8px;">Educational Posts</div>
+      <div style="font-size: 13px; color: var(--ink2); line-height: 1.7;">Workout tips, nutrition facts, form correction graphics. Designed to be saved and shared — builds authority without selling.</div>
+    </div>
+    <div style="background: #fff; border: 1px solid var(--rule); border-radius: 10px; padding: 20px;">
+      <div style="font-size: 14px; font-weight: 500; margin-bottom: 8px;">Carousel Series</div>
+      <div style="font-size: 13px; color: var(--ink2); line-height: 1.7;">Multi-slide educational or sales sequences. Each slide optimized for stop power and progression toward CTA.</div>
+    </div>
+    <div style="background: #fff; border: 1px solid var(--rule); border-radius: 10px; padding: 20px;">
+      <div style="font-size: 14px; font-weight: 500; margin-bottom: 8px;">Captions & Copy</div>
+      <div style="font-size: 13px; color: var(--ink2); line-height: 1.7;">Conversion-optimized captions, hooks, and CTAs. Written to create curiosity, build narrative, drive specific actions.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-eyebrow">Pricing & Packages</div>
+  <h2 class="section-title">Invest in content <em>that converts.</em></h2>
+  <p class="section-sub">Done-for-you graphics, captions, and strategy.</p>
+
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-tier">Starter</div>
+      <div class="pricing-price">$500</div>
+      <div class="pricing-sub">5 graphics</div>
+      <div class="pricing-feat">5 custom fitness graphics</div>
+      <div class="pricing-feat">Transformation posts or testimonials</div>
+      <div class="pricing-feat">Copy included</div>
+      <div class="pricing-feat">1 round of revisions</div>
+      <div class="pricing-feat">2-week delivery</div>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-tier">Growth</div>
+      <div class="pricing-price">$1,200</div>
+      <div class="pricing-sub">Retainer</div>
+      <div class="pricing-feat">12–15 graphics/month</div>
+      <div class="pricing-feat">Mix of content types</div>
+      <div class="pricing-feat">Weekly content calendar</div>
+      <div class="pricing-feat">Copy + captions included</div>
+      <div class="pricing-feat">Ongoing optimization</div>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-tier">Premium</div>
+      <div class="pricing-price">$2,000+</div>
+      <div class="pricing-sub">Full content system</div>
+      <div class="pricing-feat">20+ graphics/month</div>
+      <div class="pricing-feat">Complete content strategy</div>
+      <div class="pricing-feat">Conversion optimization</div>
+      <div class="pricing-feat">A/B testing framework</div>
+      <div class="pricing-feat">Quarterly performance review</div>
+    </div>
+  </div>
+
+  <div class="cta-box">
+    <h3>Ready to upgrade your content?</h3>
+    <p>Let's create graphics that actually convert — not just look pretty.</p>
+    <a href="mailto:lampong.tine@gmail.com?subject=Fitness%20Content%20Design%20Inquiry" class="btn">Get Started</a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-eyebrow">FAQ</div>
+  <h2 class="section-title">Questions <em>about the work.</em></h2>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+    <div>
+      <div style="font-size: 14px; font-weight: 500; margin-bottom: 8px; color: var(--ink);">What about copyright/model releases?</div>
+      <div style="font-size: 13px; color: var(--ink2); line-height: 1.7;">I work only with coaches who have permission and model releases from clients. If using client photos, they're either cropped to hide faces or blurred for privacy. All graphics are 100% original designs, not templates.</div>
+    </div>
+    <div>
+      <div style="font-size: 14px; font-weight: 500; margin-bottom: 8px; color: var(--ink);">Can you use my brand colors?</div>
+      <div style="font-size: 13px; color: var(--ink2); line-height: 1.7;">Yes. I'll match your existing brand colors, fonts, and aesthetic. Send me your brand guidelines and I'll incorporate them seamlessly while keeping designs high-performing.</div>
+    </div>
+    <div>
+      <div style="font-size: 14px; font-weight: 500; margin-bottom: 8px; color: var(--ink);">What tools do you use?</div>
+      <div style="font-size: 13px; color: var(--ink2); line-height: 1.7;">Adobe Creative Suite (Photoshop, Illustrator) + Canva Pro for quick designs. All files delivered in the format you need (PNG, JPG, PSD, or Canva editable links).</div>
+    </div>
+    <div>
+      <div style="font-size: 14px; font-weight: 500; margin-bottom: 8px; color: var(--ink);">How long does the Retainer package take?</div>
+      <div style="font-size: 13px; color: var(--ink2); line-height: 1.7;">12–15 graphics delivered throughout the month. Typically 3–4 graphics delivered each week, ready to post. You provide the strategy/captions or I create those too (copy included).</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>Christine Lampong · Fitness Content Design & Operations Specialist · Remote, Philippines</span>
+  <div style="display: flex; gap: 20px;">
+    <a href="mailto:lampong.tine@gmail.com">lampong.tine@gmail.com</a>
+    <a href="https://linkedin.com/in/christinelampong">LinkedIn</a>
+  </div>
+</footer>
+
+</body>
+</html>
