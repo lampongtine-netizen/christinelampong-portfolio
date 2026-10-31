@@ -143,6 +143,11 @@
     font-size: 18px; color: var(--ink3); transition: transform 0.2s, color 0.2s;
   }
   .proj-card.open .proj-arrow { transform: rotate(90deg); color: var(--accent); }
+  .proj-card--featured {
+    border-top: 3px solid var(--accent);
+    background: var(--accent-lt);
+  }
+  .proj-card--featured:hover { background: #deeae4; }
 
   /* ── PROJECT DETAIL DRAWER ───────────────────────── */
   .proj-detail {
@@ -365,9 +370,9 @@
 <div class="hero">
   <div class="hero-eyebrow">Portfolio Projects</div>
   <h1>Operations systems <em>built to scale.</em></h1>
-  <p>Six end-to-end demo projects showcasing the workflows, automations, SOPs, and dashboards I design for real-world business operations — from client onboarding to support infrastructure.</p>
+  <p>Seven end-to-end demo projects showcasing the workflows, automations, SOPs, and dashboards I design for real-world business operations — from client onboarding to support infrastructure.</p>
   <div class="hero-stats">
-    <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Full projects</div></div>
+    <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">Full projects</div></div>
     <div class="stat-item"><div class="stat-num">18+</div><div class="stat-label">Workflow maps</div></div>
     <div class="stat-item"><div class="stat-num">24</div><div class="stat-label">SOPs documented</div></div>
     <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Automation tools</div></div>
@@ -432,6 +437,30 @@
 
     <!-- Detail drawer — spans full grid -->
     <div class="proj-detail" id="proj-detail"></div>
+
+    <!-- Project 07 — Featured Live Demo -->
+    <a href="/payment-ops-dashboard.html" class="proj-card proj-card--featured" style="text-decoration:none;display:block;cursor:pointer;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
+        <div>
+          <div class="proj-num" style="color:var(--accent);">Project 07 · Live Interactive Demo</div>
+          <div class="proj-name">Payment Operations & Reconciliation Dashboard</div>
+          <div class="proj-company">Financial Operations · Payment Monitoring · Reconciliation</div>
+          <div class="proj-industry">Portfolio Simulation — Synthetic Data · Independent Project</div>
+        </div>
+        <span style="font-size:22px;color:var(--accent);flex-shrink:0;margin-top:4px;">↗</span>
+      </div>
+      <p style="font-size:13px;color:var(--ink2);margin:14px 0 16px;line-height:1.7;max-width:640px;">A fully interactive financial operations dashboard simulating the daily responsibilities of a Payment Operations Officer — transaction monitoring, reconciliation logic, discrepancy investigation, CSV reporting, and SOP documentation. Built to demonstrate analytical thinking, financial accuracy, and structured operations management aligned with my BS Accountancy background.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
+        <span style="font-size:11px;font-weight:500;letter-spacing:.06em;background:var(--accent-lt);color:var(--accent);padding:4px 10px;">Payment Operations</span>
+        <span style="font-size:11px;font-weight:500;letter-spacing:.06em;background:var(--accent-lt);color:var(--accent);padding:4px 10px;">Transaction Monitoring</span>
+        <span style="font-size:11px;font-weight:500;letter-spacing:.06em;background:var(--accent-lt);color:var(--accent);padding:4px 10px;">Financial Reconciliation</span>
+        <span style="font-size:11px;font-weight:500;letter-spacing:.06em;background:var(--accent-lt);color:var(--accent);padding:4px 10px;">Discrepancy Investigation</span>
+        <span style="font-size:11px;font-weight:500;letter-spacing:.06em;background:var(--accent-lt);color:var(--accent);padding:4px 10px;">CSV Reporting</span>
+        <span style="font-size:11px;font-weight:500;letter-spacing:.06em;background:var(--accent-lt);color:var(--accent);padding:4px 10px;">Operational Controls</span>
+        <span style="font-size:11px;font-weight:500;letter-spacing:.06em;background:var(--accent-lt);color:var(--accent);padding:4px 10px;">BS Accountancy — Cum Laude</span>
+      </div>
+      <div style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);">View Live Demo →</div>
+    </a>
 
   </div>
 </section>
